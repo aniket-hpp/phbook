@@ -1,0 +1,29 @@
+.iconButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding:  5px 10px;
+    border: 1px solid cornflowerblue;
+    border-radius: 8px;
+    background-color: white;
+    color: cornflowerblue;
+    transition: 0.35s;
+    font-size: small;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.iconButton:hover{
+    color: white;
+    background-color: rgb(100, 148, 237);
+}
+
+.iconButton img{
+    filter: invert(57%) sepia(17%) saturate(1714%) hue-rotate(183deg) brightness(97%) contrast(91%);
+}
+
+.iconButton img:hover{
+    filter: invert(100%);
+}

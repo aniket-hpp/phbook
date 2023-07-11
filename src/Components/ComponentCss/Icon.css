@@ -1,0 +1,9 @@
+.Icon{
+    transition: 0.35s;
+    width: 30px;
+    cursor: pointer;
+}
+
+.Icon:hover{
+    transform: scale(105%);
+}

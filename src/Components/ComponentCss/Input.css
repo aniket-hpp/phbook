@@ -1,0 +1,19 @@
+:root{
+    --outlineColor : cornflowerblue;
+}
+
+.Input{
+    width: 250px;
+    height: 30px;
+    padding-inline: 5px;
+    outline-color: var(--outlineColor);
+    border-style: solid;
+    border-color: gray;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+}
+
+.Input::placeholder{
+    opacity: 0.6;
+}

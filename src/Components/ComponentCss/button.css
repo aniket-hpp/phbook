@@ -1,0 +1,15 @@
+.Button{
+    transition: 0.35s;
+    background-color: white;
+    border-style: solid;
+    border-color: cornflowerblue;
+    border-width: 2px;
+    border-radius: 5px;
+
+    width: 80px;
+    height: 30px;
+
+    color: cornflowerblue;
+    animation: ease-in-out 1s;
+    cursor: pointer;
+}

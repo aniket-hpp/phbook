@@ -1,0 +1,14 @@
+.textfield{
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(128, 128, 128, 0.201);
+    border-style: solid;
+    border-width: 1px;
+
+    font-family: monospace;
+    font-weight: 800;
+
+    width: 250px;
+}

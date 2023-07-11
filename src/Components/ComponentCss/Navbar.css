@@ -1,0 +1,53 @@
+.navbar{
+
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    
+    display: flex;
+    flex-direction: row;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+
+    padding: 10px;
+
+    background-color: rgba(255, 255, 255, 0.574);
+    border-style: solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 1px;
+    border-color: #4056A1;
+    z-index: 10;
+}
+
+.icon{
+    mix-blend-mode: multiply;
+    transition: 1s;
+    width: 32px;
+    height: 32px;
+
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.icon:hover{
+    transform: rotateZ(45deg);
+}
+
+.name{
+    margin: auto auto auto 0px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+
+    font-family: monospace;
+    font-size: larger;
+    color: #4056A1;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
