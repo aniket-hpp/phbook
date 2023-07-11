@@ -63,8 +63,9 @@ const SignUp = () => {
 
             try{
                 await sendEmailVerification(auth.currentUser)
-                alert('Verification Email Sent!')
-                navigate('/')
+                setMsg('Verification Email Sent!')
+                showDialog(true)
+                navigate('/signin')
             }catch(error){
                 setMsg(`${error}`)
                 showDialog(true)

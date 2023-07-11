@@ -57,7 +57,7 @@ const Profile = () => {
                     return
                 }else{
                     await Update()
-                setLoading(false)
+                    setLoading(false)
                 }
             })
         }

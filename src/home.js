@@ -14,8 +14,10 @@ const Home = () => {
     const handleContinue = async () => {
             if(auth.currentUser){
                 navigate('/user')
+                return
             }else{
                 navigate('/signup')
+                return
             }
     }
 
