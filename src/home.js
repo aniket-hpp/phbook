@@ -12,13 +12,11 @@ const Home = () => {
     const [isHovering, setHovering] = useState(false)
 
     const handleContinue = async () => {
-        auth.onAuthStateChanged((user) => {
-            if(user){
+            if(auth.currentUser){
                 navigate('/user')
             }else{
                 navigate('/signup')
             }
-        })
     }
 
     return (
