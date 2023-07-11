@@ -103,6 +103,7 @@ const User = () => {
         auth.onAuthStateChanged((user) => {
             if(!user){
                 navigate('/')
+                return
             }
         })
 
