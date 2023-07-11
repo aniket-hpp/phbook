@@ -58,8 +58,7 @@ const SignUp = () => {
 
         try{
             await createUserWithEmailAndPassword(auth, email, password)
-            setMsg('User created sucessfully')
-            showDialog(true)
+            alert('User created sucessfully')
 
             try{
                 await sendEmailVerification(auth.currentUser)
