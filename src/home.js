@@ -15,7 +15,6 @@ const Home = () => {
         auth.onAuthStateChanged((user) => {
             if(user){
                 navigate('/user')
-                return
             }else{
                 navigate('/signup')
             }
