@@ -100,13 +100,6 @@ const User = () => {
             }
         }
 
-        auth.onAuthStateChanged((user) => {
-            if(!user){
-                navigate('/')
-                return
-            }
-        })
-
         isUser()
     }, [navigate, reload])
 
