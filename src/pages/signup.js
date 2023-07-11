@@ -64,6 +64,7 @@ const SignUp = () => {
             try{
                 await sendEmailVerification(auth.currentUser)
                 alert('Verification Email Sent!')
+                await auth.signOut()
                 navigate('/signin')
             }catch(error){
                 setMsg(`${error}`)
