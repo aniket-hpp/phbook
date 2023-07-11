@@ -12,6 +12,7 @@ const Home = () => {
     const [isHovering, setHovering] = useState(false)
 
     const handleContinue = async () => {
+        console.log(window.innerWidth)
             if(auth.currentUser){
                 navigate('/user')
                 return
@@ -31,7 +32,7 @@ const Home = () => {
                 transition: '1s',
                 margin: 'auto',
                 height: 'fit-content',
-                width: 'fit-content',
+                width: (window.innerWidth <= 400)?(`${window.innerWidth - 40}px`):'350px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -43,32 +44,32 @@ const Home = () => {
                 cursor: 'default',
                 boxShadow: `4px 4px 10px ${isHovering?'crimson':'cornflowerblue'}`
                 }}>
-                <p style={{
-                    opacity: '0.5',
-                    margin: 'auto auto 0px auto',
-                    filter: 'invert(100%)',
-                    width: '350px',
-                    textAlign: 'center',
-                    paddingTop: '50px',
-                    fontSize: 'larger'
-                }}>A</p>
-                <img style={{
-                    opacity: '0.5',
-                    margin: '-40px auto -40px auto',
-                    filter: 'invert(100%)',
-                    width: '350px',
-                }} 
-                    src={Simple}
-                    alt="Simple"
-                />
-                <p style={{
-                    opacity: '0.5',
-                    margin: '0px auto 10px auto',
-                    filter: 'invert(100%)',
-                    width: '350px',
-                    textAlign: 'center',
-                    paddingBottom: '50px',
-                }}>way to store Contacts in cloud</p>
+                    <p style={{
+                        opacity: '0.5',
+                        margin: 'auto auto 0px auto',
+                        filter: 'invert(100%)',
+                        width: '100%',
+                        textAlign: 'center',
+                        paddingTop: '50px',
+                        fontSize: 'larger'
+                    }}>A</p>
+                    <img style={{
+                        opacity: '0.5',
+                        margin: '-40px auto -40px auto',
+                        filter: 'invert(100%)',
+                        width: '100%',
+                    }} 
+                        src={Simple}
+                        alt="Simple"
+                    />
+                    <p style={{
+                        opacity: '0.5',
+                        margin: '0px auto 10px auto',
+                        filter: 'invert(100%)',
+                        width: '100%',
+                        textAlign: 'center',
+                        paddingBottom: '50px',
+                    }}>way to store Contacts in cloud</p>
             </div>
 
             <div style={{

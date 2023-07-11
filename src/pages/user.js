@@ -110,7 +110,7 @@ const User = () => {
     }, [navigate, reload])
 
     return (
-        <div style={{height: "100vh"}}>
+        <div>
             <Navbar TypeOfPage={'user'}/>
             <Loading loading={loading}/>
             <Dialog Message={msg} Show={dialog} button1={button1} Ok={() => {setDialog(false)}}/>

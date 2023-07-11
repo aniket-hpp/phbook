@@ -87,7 +87,7 @@ const Profile = () => {
                 width: "100vw", height: "100vh", margin: "auto", justifyContent: "center", alignItems: "center"
             }}>
                 <Wrapper 
-                    width={"370px"} 
+                    width={(window.innerWidth < 450)?`${window.innerWidth - 80}px`:'370px'} 
                     height={"fit-content"} 
                     justifyContent={"center"} 
                     alignItems={"center"} 
@@ -102,9 +102,9 @@ const Profile = () => {
                     <div style={{margin: "auto auto auto 10px", fontSize: "x-small", color: "red"}}>**Do not share your uid with anyone</div>  
 
 
-                    <Wrapper width={"90%"} height={"fit-content"} backgroundColor={"white"}>
-                        <span>{'uid: '}</span>
-                        <p style={{margin: "auto auto auto 0"}}>{`${(auth.currentUser)?(auth.currentUser.uid):''}`}</p>
+                    <Wrapper width={(window.innerWidth < 450)?`${window.innerWidth - 120}px`:'90%'} height={"fit-content"} backgroundColor={"white"}>
+                        <span style={{fontSize: (window.innerWidth < 450)?'small':'medium'}}>{'uid: '}</span>
+                        <p style={{margin: "auto auto auto 0", fontSize: (window.innerWidth < 450)?'small':'medium'}}>{`${(auth.currentUser)?(auth.currentUser.uid):''}`}</p>
                     </Wrapper>
 
                     {
@@ -113,9 +113,9 @@ const Profile = () => {
                                 Object.keys(user).map((Key, index2) => {
                                     if(Key !== '_id' && Key !== 'cat' && Key !== '__v'){
                                         return (
-                                            <Wrapper key={`w + ${Key} + ${index1} + ${index2}`} width={"90%"} height={"fit-content"} backgroundColor={"white"}>
-                                                    <span key={`s + ${Key} + ${index1} + ${index2}`}>{`${Key}: `}</span>
-                                                    <p key={`p + ${Key} + ${index1} + ${index2}`} style={{margin: "auto auto auto 0"}}>{`${user[Key]}`}</p>
+                                            <Wrapper key={`w + ${Key} + ${index1} + ${index2}`} width={(window.innerWidth < 450)?`${window.innerWidth - 120}px`:'90%'} height={"fit-content"} backgroundColor={"white"}>
+                                                    <span style={{fontSize: (window.innerWidth < 450)?'small':'medium'}} key={`s + ${Key} + ${index1} + ${index2}`}>{`${Key}: `}</span>
+                                                    <p style={{fontSize: (window.innerWidth < 450)?'small':'medium', margin: "auto auto auto 0"}} key={`p + ${Key} + ${index1} + ${index2}`}>{`${user[Key]}`}</p>
                                             </Wrapper>
                                             )
                                         }

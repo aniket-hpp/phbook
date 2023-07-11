@@ -58,12 +58,13 @@ const SignUp = () => {
 
         try{
             await createUserWithEmailAndPassword(auth, email, password)
-            alert('User created sucessfully')
+            setMsg('User created sucessfully')
+            showDialog(true)
 
             try{
                 await sendEmailVerification(auth.currentUser)
-                alert('Verification Email Sent!')
-                await auth.signOut()
+                setMsg('Verification Email Sent!')
+                showDialog(true)
                 navigate('/signin')
             }catch(error){
                 setMsg(`${error}`)

@@ -11,7 +11,7 @@ const Loading = ({loading}) => {
             justifyContent: "center",
             alignItems: "center",
             zIndex: "8",
-            position: "absolute",
+            position: "fixed",
             background: "rgba(255, 255, 255, 0.7)",
             backdropFilter: "blur(5px)",
         }}>
