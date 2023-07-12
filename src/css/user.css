@@ -2,11 +2,13 @@
     width: 100vw;
     height: 100vh;
     margin-top: 80px;
+    overflow-x: hidden;
     display: flex;
     z-index: 0;
     justify-content: center;
     position: relative;
-    padding: 20px;
+    left: 0;
+    right: 0;
 }
 
 .usercontainer{
