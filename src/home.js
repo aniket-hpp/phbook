@@ -82,7 +82,10 @@ const Home = () => {
                     OnClick={handleContinue}
                     />
             </div>
-
+                        
+            <div className="footer">
+                <p>Made by <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/thesmartaniket/">Aniket Biswas</a></p>
+            </div>
 
         </div>
     )
