@@ -5,8 +5,8 @@ import Icon from '../Components/Icon.js'
 const Loading = ({loading}) => {
     return (
         <div style={{
-            height: window.innerHeight,
-            width: window.innerWidth,
+            height: '100vh',
+            width: '100vw',
             display: loading?'flex':'none',
             justifyContent: "center",
             alignItems: "center",
