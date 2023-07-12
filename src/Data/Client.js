@@ -13,7 +13,7 @@ const Client = async (request) => {
         body: JSON.stringify(request),
         headers:{
             'Content-Type':'application/json',
-            'Access-Control-Allow-Origin':'http://localhost:3000/'
+            'Access-Control-Allow-Origin': 'https://phbook.vercel.app/'
         }
     }, 8000)
         .catch((error) => {
