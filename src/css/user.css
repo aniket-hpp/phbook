@@ -1,7 +1,7 @@
 .maincontainer{
     width: 100vw;
     height: 100vh;
-    margin: 80px;
+    margin-top: 80px;
     justify-content: center;
     display: flex;
     z-index: 0;
