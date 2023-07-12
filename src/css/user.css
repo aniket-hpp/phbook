@@ -25,10 +25,10 @@
 @media screen and (max-width: 840px) {
     .usercontainer{
         flex-direction: column;
-        justify-content: center;
+        align-items: center;
     }
 
     .contacts{
-        justify-content: center;
+        align-items: center;
     }
 }
