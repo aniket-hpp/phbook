@@ -16,7 +16,8 @@
 }
 
 .footer a{
-    transition: 0.2s;
+    transition: 0.35s;
+    font-weight: 600;
     text-decoration: none;
     color: black;
     cursor: pointer;
@@ -24,4 +25,5 @@
 
 .footer a:hover{
     color: crimson;
+    letter-spacing: 1px;
 }
