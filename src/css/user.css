@@ -8,7 +8,6 @@
 }
 
 .usercontainer{
-    align-items: center;
     padding: 10px;
     display: flex;
     flex-direction: row;
