@@ -120,6 +120,7 @@ const User = () => {
                   display: "flex",
                   flexDirection: "column",  
                   gap: "25px",
+                  overflow-y: loading?'hidden':'auto'
                 }}>
                     <Seacrh 
                         setSearch={setSearch} 
