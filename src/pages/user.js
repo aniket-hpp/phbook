@@ -114,8 +114,8 @@ const User = () => {
             <Navbar TypeOfPage={'user'}/>
             <Loading loading={loading}/>
             <Dialog Message={msg} Show={dialog} button1={button1} Ok={() => {setDialog(false)}}/>
-            <div style={{overflowY: loading?'hidden':'auto'}} className="maincontainer">
-                <div className="usercontainer"> 
+            <div className="maincontainer">
+                <div style={{overflowY: loading?'hidden':'auto'}} className="usercontainer"> 
                 <div style={{
                   display: "flex",
                   flexDirection: "column",  
