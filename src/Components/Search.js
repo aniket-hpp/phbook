@@ -21,7 +21,7 @@ const Seacrh = ({setSearch, setFilter, filter, OnClick, showData, setShowData, D
     return (
         <div className="main-search-container">
             <div className="search">
-                <input onChange={e => setSearch(e.target.value)}/>
+                <input placeholder="Search" onChange={e => setSearch(e.target.value)}/>
                 <img src={filterIcon} onClick={() => setDisplay(!display)} alt="F"/>
                 <img src={searchIcon} onClick={OnClick} alt="S"/>
             </div>
