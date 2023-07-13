@@ -14,7 +14,7 @@ const Loading = ({loading}) => {
             position: "fixed",
             background: "rgba(255, 255, 255, 0.7)",
             backdropFilter: "blur(5px)",
-            overflow-y: 'hidden'
+            overflow-y: "hidden",
         }}>
             <Icon icon={LoadingIcon} display={true}/>
         </div>
