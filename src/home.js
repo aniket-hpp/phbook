@@ -38,11 +38,11 @@ const Home = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 background: 'rgba(255, 255, 255, 0.1)',
-                border: `1px solid ${isHovering?'crimson':'cornflowerblue'}`,
+                border: `1px solid ${isHovering?'crimson':'#254d4f'}`,
                 borderRadius: "10px",
                 backdropFilter: 'blur(4px)',
                 cursor: 'default',
-                boxShadow: `4px 4px 10px ${isHovering?'crimson':'cornflowerblue'}`
+                boxShadow: `4px 4px 10px ${isHovering?'crimson':'#254d4f'}`
                 }}>
                     <p style={{
                         opacity: '0.5',
