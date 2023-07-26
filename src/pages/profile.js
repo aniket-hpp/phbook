@@ -94,9 +94,9 @@ const Profile = () => {
                     flexDirection={"column"}
                 >
                     <div style={{ width: "95%", display: "flex", alignItems: "center", justifyContent: "space-between"}}>
-                        <Icon icon={Back} display={true} OnClick={() => navigate(-1)}/>
+                        <Icon name={'Back'} icon={Back} display={true} OnClick={() => navigate(-1)}/>
                         <p style={{fontSize: "large", fontWeight: "bold", padding: "10px"}}>Your Profile</p>
-                        <Icon icon={DeleteIcon} display={true} OnClick={() => setDialog(true)}/>
+                        <Icon name={'Delete your profile'} icon={DeleteIcon} display={true} OnClick={() => setDialog(true)}/>
                     </div>
 
                     <div style={{margin: "auto auto auto 10px", fontSize: "x-small", color: "red"}}>**Do not share your uid with anyone</div>  

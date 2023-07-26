@@ -16,6 +16,8 @@ import Icon from "../Components/Icon.js";
 import Back from '../icon/back.png'
 import Loading from '../Components/Loading.js'
 import Dialog from '../Components/Dialog.js'
+import Import from '../icon/import.png'
+import { vcfPraser } from "../vcf/vcf.js";
 
 const AddNewContact = ({tittle, TypeOfPage}) => {
     const [name, setName] = useState('')
@@ -27,7 +29,7 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
     const [dialog, setDialog] = useState(false)
     const [msg, setMsg] = useState('')
     const [userEmail, setUserEmail] = useState('')
-    
+
     const navigate = useNavigate()
     
     const handlesave = async () => {
@@ -97,6 +99,23 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
         }
     }
 
+    const selectFile = async (e) => {
+        e.preventDefault()
+        const reader = new FileReader()
+        reader.onload = async (e) => { 
+            const text = (e.target.result)
+            await vcfPraser(text)
+            .then(e => {
+                setName(e.fn)
+                let num = e.tel[0].value
+                setNum(num.replace('-', '').replace(' ', ''))
+            })
+            .catch(e => alert(e))
+        };
+  
+      reader.readAsText(e.target.files[0])
+    }
+
     useEffect(() => {
         const isUser = async () => {
             auth.onAuthStateChanged((user) => {
@@ -137,8 +156,14 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
                         justifyContent: "flex-start",
                         alignItems: "center"
                     }}>
-                        <Icon icon={Back} display={true} OnClick={() => navigate(-1)}/>
+                        <Icon icon={Back} name={'Back'} display={true} OnClick={() => navigate(-1)}/>
                         <p style={{margin: "auto", padding: "20px"}}>{(tittle)?tittle:'Add New Contact'}</p>
+                        <div className="import">
+                            <label htmlFor="file-in">
+                                <Icon icon={Import} name={'Import'} display={true}/>
+                            </label>
+                            <input id="file-in" type="file" accept=".vcf" onChange={e => selectFile(e)}/>
+                        </div>
                     </div>
                     <Input Placeholder={"Name"} Type={"text"} Value={name} getValue={setName}/>
                     <Input Placeholder={"Mobile Number"} Type={"text"} Value={num} getValue={setNum}/>
@@ -171,6 +196,7 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
                         </div>
                         <Radio wp={isWp} setWp={() => setWp(!isWp)}/>
                     </div>
+
                     <Button Text={(TypeOfPage === 'myprofile')?'Submit':'Save'} enable={true} OnClick={handlesave}/>
                 </Wrapper>
             </div>

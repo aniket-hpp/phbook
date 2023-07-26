@@ -12,7 +12,8 @@ const Icon = ({icon, name, OnClick, width, display, backgroundColor, topRightBor
                 borderBottomRightRadius: bottomRightBorderRadius}}
                 className="Icon" 
                 src={icon} 
-                alt={name} 
+                alt={name}
+                title={name} 
                 onClick={OnClick}/>
             <div style={{width: width, display: display?'none':'block'}}></div>
         </div>
