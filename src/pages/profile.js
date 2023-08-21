@@ -27,7 +27,7 @@ const Profile = () => {
 
         if(auth.currentUser){
             Model.type = 'deleteData'
-            Model.uid = auth.currentUser.uid
+            Model.uid = auth.currentUser.email
             Model.data = User[0]
 
             let result = await Client(Model)
@@ -44,7 +44,7 @@ const Profile = () => {
 
     const Update = async () => {
         Model.type = 'getData'
-        Model.uid = auth.currentUser.uid
+        Model.uid = auth.currentUser.email
 
         setData(await Client(Model))
         setUser(await Filter(Data, 'isProfile', true))

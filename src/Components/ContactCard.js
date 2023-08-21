@@ -49,7 +49,7 @@ const ContactCard = ({data, reload}) => {
         if(auth.currentUser){
             if(window.confirm(`Delete this Contact of ${localModel.name}?`)){
                 Model.data = data
-                Model.uid = auth.currentUser.uid
+                Model.uid = auth.currentUser.email
                 Model.type = 'deleteData'
     
                 let result = await Client(Model)
@@ -107,7 +107,7 @@ const ContactCard = ({data, reload}) => {
                     localModel.email = email
 
                     Model.data = localModel
-                    Model.uid = auth.currentUser.uid
+                    Model.uid = auth.currentUser.email
                     Model.type = "updateData"
                     
                     let result = await Client(Model)

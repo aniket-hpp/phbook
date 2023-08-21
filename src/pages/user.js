@@ -98,7 +98,7 @@ const User = () => {
                 return
             }else{
                 setLoading(true)
-                clientModel.uid = auth.currentUser.uid
+                clientModel.uid = auth.currentUser.email
                 clientModel.type = 'getData'
                 setReload(false)
 

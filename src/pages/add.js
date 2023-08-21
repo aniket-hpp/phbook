@@ -53,7 +53,7 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
                 setLoading(true)
                 let Model = ClientModel
 
-                Model.uid = auth.currentUser.uid
+                Model.uid = auth.currentUser.email
                 Model.type = 'getData'
 
                 if((await Client(Model)).length >= 51){
@@ -78,7 +78,7 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
                 Model.data.isWp = isWp
                 Model.data._id = undefined
 
-                Model.uid = auth.currentUser.uid
+                Model.uid = auth.currentUser.email
                 Model.type = 'saveData'
 
                 let result = await Client(Model)
@@ -87,7 +87,7 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
                     setMsg(((TypeOfPage === 'myprofile')?'Details Updated':'Contact Added!'))
                     setDialog(true)
                 }else{
-                    setMsg(`Same ${result.toUpperCase()}`)
+                    setMsg(`Same ${result}`)
                     setDialog(true)
                 }
             }else{
