@@ -156,10 +156,28 @@ const ContactCard = ({data, reload}) => {
                 }}
             >
                 <div className="contact-row-container" id="extras">
-                    <Icon display={display} width={'20px'} icon={remove} name={'Delete'} OnClick={handelDelete}/>
+                    <Icon 
+                        display={display} 
+                        width={'20px'} 
+                        icon={remove} 
+                        name={'Delete'} 
+                        OnClick={handelDelete}
+                    />
                     <div style={{display: "flex", gap:"10px"}}>
-                        <Icon display={display} width={'20px'} icon={Edit} name={'Edit'} OnClick={handelEdit}/>
-                        <Icon display={display} width={'20px'} icon={cross} name={'X'} OnClick={() => setDisplay(!display)}/>
+                        <Icon 
+                            display={display} 
+                            width={'20px'} 
+                            icon={Edit} 
+                            name={'Edit'} 
+                            OnClick={handelEdit}
+                        />
+                        <Icon 
+                            display={display} 
+                            width={'20px'} 
+                            icon={cross} 
+                            name={'X'} 
+                            OnClick={() => setDisplay(!display)}
+                        />
                     </div>
                 </div>
 
@@ -182,7 +200,13 @@ const ContactCard = ({data, reload}) => {
                     style={{display: localModel.isWp?'':'none'}}
                 >
                     <Icon display={true} icon={whatsapp}/>
-                    <a href={`https://api.whatsapp.com/send?phone=${localModel.num}`} target="_blank">Whatsapp</a>
+                    <a 
+                        href={`https://api.whatsapp.com/send?phone=${localModel.num}`} 
+                        target="_blank"
+                        rel="noreferrer"
+                        >
+                            Whatsapp
+                    </a>
                 </div>
 
             </div>
@@ -198,9 +222,24 @@ const ContactCard = ({data, reload}) => {
                     zIndex: "0",
                 }}>
 
-                <Input Value={name} Type={'text'} Placeholder={"New Name"} getValue={setName}/>
-                <Input Value={num} Type={'text'} Placeholder={"New Number"} getValue={setNum}/>
-                <Input Value={email} Type={'email'} Placeholder={"New Email (Optional)"} getValue={setEmail}/>
+                <Input 
+                    Value={name} 
+                    Type={'text'} 
+                    Placeholder={"New Name"} 
+                    getValue={setName}
+                />
+                <Input 
+                    Value={num} 
+                    Type={'text'} 
+                    Placeholder={"New Number"} 
+                    getValue={setNum}
+                />
+                <Input 
+                    Value={email} 
+                    Type={'email'} 
+                    Placeholder={"New Email (Optional)"} 
+                    getValue={setEmail}
+                />
                 <div style={{
                     width: "100%",
                     display: "flex",
@@ -217,8 +256,15 @@ const ContactCard = ({data, reload}) => {
                     justifyContent: "space-evenly",
                     zIndex: "0"
                 }}>
-                    <Button enable={true} Text={"Save"} OnClick={Save}/>
-                    <Button enable={true} Text={"Cancel"} OnClick={() => {showEdit(false); setDisplay(true)}}
+                    <Button 
+                        enable={true} 
+                        Text={"Save"} 
+                        OnClick={Save}
+                    />
+                    <Button 
+                        enable={true} 
+                        Text={"Cancel"} 
+                        OnClick={() => {showEdit(false); setDisplay(true)}}
                     />
                 </div>
             </div>

@@ -7,13 +7,27 @@ const Select = ({ItemList, selected, setSelected}) => {
 
     return (
         <div className="select-container">
-            <Button OnClick={() => {(display === 'none')?setDisplay('flex'):setDisplay('none')}} enable={true} Text={ItemList[selected].name}/>
+            <Button 
+                OnClick={() => {
+                    (display === 'none')?setDisplay('flex'):setDisplay('none')
+                }} 
+                enable={true} 
+                Text={ItemList[selected].name}
+            />
             <div style={{display: display}}>
                     {
                         ItemList.map((Item, Index) => {
                             if(Index !== selected){
                                 return (
-                                    <Button enable={true} Text={Item.name} key={Index} OnClick={() => {setDisplay('none'); setSelected(Index)}}/>
+                                    <Button 
+                                        enable={true} 
+                                        Text={Item.name} 
+                                        key={Index} 
+                                        OnClick={() => {
+                                            setDisplay('none'); 
+                                            setSelected(Index)
+                                        }}
+                                    />
                                 )
                             }else{
                                 return (

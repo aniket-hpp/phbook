@@ -27,13 +27,32 @@ const Seacrh = ({setSearch, setFilter, filter, OnClick, showData, setShowData, D
             </div>
 
             <div style={{display: display?'flex':'none'}} className="filterbox">
-                <Button enable={true} Text={"Name"} isSelected={(filter === 'name')} OnClick={() => setFilter('name')}/>
-                <Button enable={true} Text={"Number"} isSelected={(filter === 'num')} OnClick={() => setFilter('num')}/>
-                <Button enable={true} Text={"Email"} isSelected={(filter === 'email')} OnClick={() => setFilter('email')}/>
+                <Button 
+                    enable={true} 
+                    Text={"Name"} 
+                    isSelected={(filter === 'name')} 
+                    OnClick={() => setFilter('name')}
+                />
+                <Button 
+                    enable={true} 
+                    Text={"Number"} 
+                    isSelected={(filter === 'num')} 
+                    OnClick={() => setFilter('num')}
+                />
+                <Button 
+                    enable={true}
+                    Text={"Email"} 
+                    isSelected={(filter === 'email')} 
+                    OnClick={() => setFilter('email')}
+                />
             </div>
             <div style={{display: showData?'flex':'none', marginTop: "5px", flexDirection: "column", gap: "10px"}}>
                 <div style={{margin: "auto 0 auto auto"}}>
-                    <Icon icon={Cross} OnClick={() => setShowData(false)} display={true}/>
+                    <Icon 
+                        icon={Cross} 
+                        OnClick={() => setShowData(false)} 
+                        display={true}
+                    />
                 </div>
 
                 {

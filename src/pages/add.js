@@ -18,8 +18,11 @@ import Loading from '../Components/Loading.js'
 import Dialog from '../Components/Dialog.js'
 import Import from '../icon/import.png'
 import { vcfPraser } from "../vcf/vcf.js";
+import Stylesheet from "reactjs-stylesheet";
 
 const AddNewContact = ({tittle, TypeOfPage}) => {
+
+    // Hooks
     const [name, setName] = useState('')
     const [num, setNum] = useState('')
     const [email, setEmail] = useState('')
@@ -30,13 +33,14 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
     const [msg, setMsg] = useState('')
     const [userEmail, setUserEmail] = useState('')
 
+    // Use to navigate() between pages
     const navigate = useNavigate()
     
+    // Function to handle to Save button
     const handlesave = async () => {
         if(name === '' || num === ''){
             alert('All fields are required!')
         } else {
-
             if(TypeOfPage !== 'myprofile'){
                 if(email !== '' && !CheckEmail(email)){
                     setMsg('Invalid Email!')
@@ -60,26 +64,19 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
                 }
 
                 if(TypeOfPage === 'myprofile'){
-                    Model.data.name = name
-                    Model.data.num = parseInt(num)
                     Model.data.email = (auth.currentUser)?(auth.currentUser.email):(email)
-                    Model.data.plan = 0
-                    Model.data.cat = Category[category].cat
-                    Model.data.isWp = isWp
-                    Model.data._id = undefined
-
                     Model.data.isProfile = true
                 } else {
-                    Model.data.name = name
-                    Model.data.num = parseInt(num)
                     Model.data.email = email
-                    Model.data.cat = Category[category].cat
-                    Model.data.plan = 0
-                    Model.data.isWp = isWp
-                    Model.data._id = undefined
-
                     Model.data.isProfile = false
                 }
+
+                Model.data.name = name
+                Model.data.num = parseInt(num)
+                Model.data.plan = 0
+                Model.data.cat = Category[category].cat
+                Model.data.isWp = isWp
+                Model.data._id = undefined
 
                 Model.uid = auth.currentUser.uid
                 Model.type = 'saveData'
@@ -99,8 +96,11 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
         }
     }
 
+    //Function to handel selectedFile
     const selectFile = async (e) => {
+
         e.preventDefault()
+
         const reader = new FileReader()
         reader.onload = async (e) => { 
             const text = (e.target.result)
@@ -112,8 +112,8 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
             })
             .catch(e => alert(e))
         };
-  
-      reader.readAsText(e.target.files[0])
+        
+        reader.readAsText(e.target.files[0])
     }
 
     useEffect(() => {
@@ -131,6 +131,31 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
         isUser()
     }, [navigate])
 
+    //style 
+    const AddStyle = Stylesheet.create({
+        topbar: {
+            width: "100%",
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center"
+        },
+        hint:{
+            width: "100%",
+            display:"flex",
+            flexDirection: "row",
+            justifyContent: (TypeOfPage === 'myprofile')?'center':'space-between',
+            marginTop: "20px",
+            marginBottom: "-5px",
+            color: "gray"
+        },
+        additionalOption:{
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: (TypeOfPage === 'myprofile')?'center':'space-between',
+        }
+    })
+
     return (
         <div>
             <div style={{display: (TypeOfPage === 'myprofile')?'none':''}}>
@@ -147,15 +172,11 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
                     }}}
                 />
             </div>
+            
             <Loading loading={loading}/>
             <div className="add-container">
                 <Wrapper flexDirection={"column"} padding={"20px"}>
-                    <div style={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "flex-start",
-                        alignItems: "center"
-                    }}>
+                    <div style={AddStyle.topbar}>
                         <Icon icon={Back} name={'Back'} display={true} OnClick={() => navigate(-1)}/>
                         <p style={{margin: "auto", padding: "20px"}}>{(tittle)?tittle:'Add New Contact'}</p>
                         <div className="import">
@@ -165,6 +186,7 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
                             <input id="file-in" type="file" accept=".vcf" onChange={e => selectFile(e)}/>
                         </div>
                     </div>
+
                     <Input Placeholder={"Name"} Type={"text"} Value={name} getValue={setName}/>
                     <Input Placeholder={"Mobile Number"} Type={"text"} Value={num} getValue={setNum}/>
                     <Input 
@@ -173,24 +195,13 @@ const AddNewContact = ({tittle, TypeOfPage}) => {
                         readOnly={(TypeOfPage==='myprofile')?(true):(false)} 
                         Value={(TypeOfPage==='myprofile')?(userEmail):(email)} 
                         getValue={setEmail}/>
-                    <div style={{
-                        width: "100%",
-                        display:"flex",
-                        flexDirection: "row",
-                        justifyContent: (TypeOfPage === 'myprofile')?'center':'space-between',
-                        marginTop: "20px",
-                        marginBottom: "-5px",
-                        color: "gray"
-                    }}>
+
+                    <div style={AddStyle.hint}>
                         <p style={{margin: "0", fontSize: "x-small", display: (TypeOfPage === 'myprofile')?'none':'block'}}>Category:</p>
                         <p style={{margin: "0", fontSize: "x-small"}}>Does this user have Whatsapp?</p>
                     </div>
-                    <div style={{
-                        width: "100%",
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: (TypeOfPage === 'myprofile')?'center':'space-between',
-                    }}>
+
+                    <div style={AddStyle.additionalOption}>
                         <div style={{display: (TypeOfPage === 'myprofile')?'none':'block'}}>
                             <Select ItemList={Category} selected={category} setSelected={setCategory}/>
                         </div>

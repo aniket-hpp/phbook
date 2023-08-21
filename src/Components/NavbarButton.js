@@ -9,7 +9,9 @@ const NavbarButton = ({Color,Name, onClick}) => {
             }}
             className="button"
             onClick={onClick}
-        >{Name}</button>
+        >
+            {Name}
+        </button>
     )
 }
 

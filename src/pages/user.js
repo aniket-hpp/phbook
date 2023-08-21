@@ -13,6 +13,7 @@ import Wrapper from "../Components/Wrapper";
 import Loading from "../Components/Loading";
 import Icon from "../Components/Icon.js"
 import Category from "../Data/Category";
+import Stylesheet from "reactjs-stylesheet";
 
 //backend libaries
 import ClientModel from "../Model/communicationModel";
@@ -41,6 +42,35 @@ const User = () => {
     const [dialog, setDialog] = useState(false)
     const [button1, setButton1] = useState()
 
+    const UserStyle = Stylesheet.create({
+        usercontainer: {
+            overflowY: loading?'hidden':'auto'
+        },
+        search: {
+            display: "flex",
+            flexDirection: "column",  
+            gap: "25px"
+        },
+        AllPanel: {
+            display: (tab === 'tab1')?'block':"none"
+        },
+        SortedPanel: {
+            display: (tab === 'tab2')?'flex':"none",
+            flexDirection: "column",
+            gap: "10px"
+        },
+        SortedSubBlock: {
+            width: '100%', 
+            display: 'flex', 
+            flexDirection:'row', 
+            justifyContent: 'center', 
+            alignItems: 'center'
+        },
+        sortedTab:{
+            margin: "0", 
+            cursor: 'default'
+        }
+    })
 
     const handelSearch = async () => {
         if(search !== ''){
@@ -115,36 +145,30 @@ const User = () => {
             <Loading loading={loading}/>
             <Dialog Message={msg} Show={dialog} button1={button1} Ok={() => {setDialog(false)}}/>
             <div className="maincontainer">
-                <div style={{overflowY: loading?'hidden':'auto'}} className="usercontainer"> 
-                <div style={{
-                  display: "flex",
-                  flexDirection: "column",  
-                  gap: "25px",
-                }}>
-                    <Seacrh 
-                        setSearch={setSearch} 
-                        setFilter={setFilter} 
-                        filter={filter} 
-                        OnClick={handelSearch}
-                        showData={showSeacrhResult}
-                        Data={searchResult}
-                        setShowData={setShowSearchResult}
-                    />
+                <div style={UserStyle.usercontainer} className="usercontainer"> 
+                    <div style={UserStyle.search}>
+                        <Seacrh 
+                            setSearch={setSearch} 
+                            setFilter={setFilter} 
+                            filter={filter} 
+                            OnClick={handelSearch}
+                            showData={showSeacrhResult}
+                            Data={searchResult}
+                            setShowData={setShowSearchResult}
+                        />
 
-                    <div style={{
-                        display: 'none'
-                    }}>
-                        <Wrapper>
-                            <ContactCard data={Data[0]}/>
-                        </Wrapper>
+                        <div style={{display: 'none'}}>
+                            <Wrapper>
+                                <ContactCard data={Data[0]}/>
+                            </Wrapper>
+                        </div>
+
+                        <Toolbar 
+                            addClickd={() => navigate('/add')}
+                            profileClicked={() => navigate('/myprofile')}
+                            reloadClicked={() => setReload(true)}
+                        />
                     </div>
-
-                    <Toolbar 
-                        addClickd={() => navigate('/add')}
-                        profileClicked={() => navigate('/myprofile')}
-                        reloadClicked={() => setReload(true)}
-                    />
-                </div>
 
                     <div className="contacts">
                         <TabSwitcher 
@@ -155,17 +179,14 @@ const User = () => {
                             OnTab1Click={() => setTab('tab1')}
                             OnTab2Click={() => {setTab('tab2')}}
                         />
-                        <div style={{
-                            display: (tab === 'tab1')?'block':"none"
-                        }}>
+                        
+                        {/* ALL BLOCK */}
+                        <div style={UserStyle.AllPanel}>
                             <ContactPannel setReload={setReload} List={Sort(Data)}/>
                         </div>
 
-                        <div style={{
-                            display: (tab === 'tab2')?'flex':"none",
-                            flexDirection: "column",
-                            gap: "10px"
-                        }}>
+                        {/* SORTED BLOCK */}
+                        <div style={UserStyle.SortedPanel}>
                             <Wrapper 
                                 display={(!Filter(Sort(Data), 'cat', 'fr').length)?'none':''}  
                                 width={"390px"} 
@@ -173,15 +194,9 @@ const User = () => {
                                 padding={"10px 0 0 0"} 
                                 margin={"auto"}
                             >
-                                <div style={{
-                                    width: '100%', 
-                                    display: 'flex', 
-                                    flexDirection:'row', 
-                                    justifyContent: 'center', 
-                                    alignItems: 'center', 
-                                }}>
+                                <div style={UserStyle.SortedSubBlock}>
                                     <Icon display={true} icon={Category[0].image} width={"30px"}/>
-                                    <p style={{margin: "0"}}>{Category[0].name}</p> 
+                                    <p style={UserStyle.sortedTab}>{Category[0].name}</p> 
                                 </div>
                                 <ContactPannel setReload={setReload} List={Filter(Sort(Data), 'cat', 'fr')}/>
                             </Wrapper>
@@ -192,15 +207,9 @@ const User = () => {
                                 flexDirection={"column"} 
                                 padding={"10px 0 0 0"} 
                             >
-                                <div style={{
-                                    width: '100%', 
-                                    display: 'flex', 
-                                    flexDirection:'row', 
-                                    justifyContent: 'center', 
-                                    alignItems: 'center', 
-                                }}>
+                                <div style={UserStyle.SortedSubBlock}>
                                     <Icon display={true} icon={Category[1].image} width={"30px"}/>
-                                    <p style={{margin: "0"}}>{Category[1].name}</p> 
+                                    <p style={UserStyle.sortedTab}>{Category[1].name}</p> 
                                 </div>
                                 <ContactPannel setReload={setReload} List={Filter(Sort(Data), 'cat', 'fa')}/>
                             </Wrapper>
@@ -212,15 +221,9 @@ const User = () => {
                                 padding={"10px 0 0 0"} 
                                 margin={"auto"}
                             >
-                                <div style={{
-                                    width: '100%', 
-                                    display: 'flex', 
-                                    flexDirection:'row', 
-                                    justifyContent: 'center', 
-                                    alignItems: 'center', 
-                                }}>
+                                <div style={UserStyle.SortedSubBlock}>
                                     <Icon display={true} icon={Category[2].image} width={"30px"}/>
-                                    <p style={{margin: "0"}}>{Category[2].name}</p> 
+                                    <p style={UserStyle.sortedTab}>{Category[2].name}</p> 
                                 </div>
                                 <ContactPannel setReload={setReload} List={Filter(Sort(Data), 'cat', 'of')}/>
                             </Wrapper>
@@ -232,15 +235,9 @@ const User = () => {
                                 padding={"10px 0 0 0"} 
                                 margin={"auto"}
                             >
-                                <div style={{
-                                        width: '100%', 
-                                        display: 'flex', 
-                                        flexDirection:'row', 
-                                        justifyContent: 'center', 
-                                        alignItems: 'center', 
-                                    }}>
+                                <div style={UserStyle.SortedSubBlock}>
                                     <Icon display={true} icon={Category[3].image} width={"30px"}/>
-                                    <p style={{margin: "0"}}>{Category[3].name}</p> 
+                                    <p style={UserStyle.sortedTab}>{Category[3].name}</p> 
                                 </div>
                                 <ContactPannel setReload={setReload} List={Filter(Sort(Data), 'cat', 'ot')}/>
                             </Wrapper>
