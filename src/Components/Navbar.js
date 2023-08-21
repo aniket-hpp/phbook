@@ -24,7 +24,7 @@ const Navbar = ({TypeOfPage}) => {
     const SignOut = async () => {
             if(auth.currentUser){
                 clientModel.type = 'signOut'
-                clientModel.uid = auth.currentUser.uid
+                clientModel.uid = auth.currentUser.email
     
                 await auth.signOut()
                 console.log(await client(clientModel))
