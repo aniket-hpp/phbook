@@ -1,9 +1,20 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import React from "react";
+
+//component
 import IconButton from "./IconButton.js";
+import Wrapper from './Wrapper.js'
+
+//assest
 import Add from '../icon/add.png'
 import MyProfile from '../icon/profile.png'
 import Reload from '../icon/synchronize.png'
-import Wrapper from './Wrapper.js'
 
 const Toolbar = ({addClickd, profileClicked, reloadClicked}) => {
     return(    
@@ -13,18 +24,21 @@ const Toolbar = ({addClickd, profileClicked, reloadClicked}) => {
             width={"370px"} 
             justifyContent={"space-around"}
         >
+            {/* TOOLBAR: 1 */}
             <IconButton 
                 filter={true} 
                 Icon={Add} 
                 Text={"Add"} 
                 OnClick={addClickd}
             />
+            {/* TOOLBAR: 2 */}
             <IconButton 
                 filter={true} 
                 Icon={MyProfile} 
                 Text={"My Profile"} 
                 OnClick={profileClicked}
             />
+            {/* TOOLBAR: 3 */}
             <IconButton 
                 filter={true} 
                 Icon={Reload} 

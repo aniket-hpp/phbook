@@ -1,7 +1,15 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries and css
 import React, { useState } from "react";
 import './ComponentCss/iconbutton.css'
 
 const IconButton = ({Icon, Text, OnClick, filter, border, fontWeight}) => {
+    //useState variable
     const [isHovering, setHovering] = useState(false)
 
     return(

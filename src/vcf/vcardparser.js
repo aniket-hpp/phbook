@@ -1,4 +1,10 @@
 /*
+	Modified by: Aniket Biswas, for: PhoneBook WebApp
+	Reason: The actual libary had several bugs which I fixed including the line number reading error.
+			I removed the unecessary codes that are not required.
+*/
+
+/*
 * @package vcardparser
 * @copyright (�) Wouter Vroege <wouter AT woutervroege DOT nl>
 * @author Wouter Vroege <wouter AT woutervroege DOT nl>

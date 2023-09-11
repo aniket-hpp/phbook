@@ -1,6 +1,15 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import React from "react";
-import Wrapper from "./Wrapper";
-import Button from "./Button";
+
+//components
+import Wrapper from "./Wrapper.js";
+import Button from "./Button.js";
 
 const Dialog = ({Message, button1, button2, Ok, Cancel, Show}) => {
     return (

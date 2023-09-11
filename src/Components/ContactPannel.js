@@ -1,12 +1,28 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import React from "react";
-import './ComponentCss/contactpannel.css'
+
+//components
 import ContactCard from './ContactCard.js'
-import UserModel from "../Model/userModel";
+
+//models
+import UserModel from "../Model/userModel.js";
+
+//css
+import './ComponentCss/contactpannel.css'
 
 const ContactPannel = ({List, setReload}) => {
+    
+    //list
     let localModel = [UserModel]
     localModel = List
-
+    
+    //if no data exists then returns
     if(localModel.length === 0)
         return
 

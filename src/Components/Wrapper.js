@@ -1,3 +1,10 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import React from "react";
 
 const Wrapper = ({backgroundColor, children, width, height, flexDirection, margin, justifyContent, alignItems, padding, gap, borderRadius, border, color, opacity, display}) => {

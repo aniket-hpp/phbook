@@ -1,15 +1,27 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+/* 
+      Description: Firebase app initialization
+      Fill up the necessary datas to setup firebase.
+*/
+
+//liabries
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
+//config datas
 const firebaseConfig = {
-  apiKey: "AIzaSyAunuk-U4zPiPdCC8Tm_HyPfWYYSyQLgik",
-  authDomain: "beloved-book.firebaseapp.com",
-  projectId: "beloved-book",
-  storageBucket: "beloved-book.appspot.com",
-  messagingSenderId: "514902766423",
-  appId: "1:514902766423:web:5ba0e2a502d86308800412"
+    apiKey: process.env.REACT_APP_APIKEY,
+    authDomain: process.env.REACT_APP_AUTHDOMAIN,
+    projectId: process.env.REACT_APP_PROJECTID,
+    storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+    appId: process.env.REACT_APP_APPID
 };
-
 
 const app = initializeApp(firebaseConfig);
 

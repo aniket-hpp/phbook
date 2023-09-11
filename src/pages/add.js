@@ -1,24 +1,39 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import React, { useEffect, useState } from "react";
+import { auth } from "../firebase/firebase.js";
+import Stylesheet from "reactjs-stylesheet";
+import { vcfPraser } from "../vcf/vcf.js";
+import { useNavigate } from "react-router-dom";
+
+//data models and its functions
+import Category from "../Data/Category.js";
+import CheckEmail from "../Data/CheckEmail.js";
+import Client from "../Data/Client.js";
+import ClientModel from "../Model/communicationModel.js";
+
+//components
 import Navbar from "../Components/Navbar.js";
 import Wrapper from "../Components/Wrapper.js";
 import Select from "../Components/Select.js";
 import Input from "../Components/Input.js";
-import Category from "../Data/Category.js";
 import Radio from "../Components/Radio.js";
-import '../css/add.css'
 import Button from "../Components/Button.js";
-import CheckEmail from "../Data/CheckEmail.js";
-import Client from "../Data/Client.js";
-import { auth } from "../firebase/firebase.js";
-import ClientModel from "../Model/communicationModel.js";
-import { useNavigate } from "react-router-dom";
 import Icon from "../Components/Icon.js";
-import Back from '../icon/back.png'
 import Loading from '../Components/Loading.js'
 import Dialog from '../Components/Dialog.js'
+
+//assets
 import Import from '../icon/import.png'
-import { vcfPraser } from "../vcf/vcf.js";
-import Stylesheet from "reactjs-stylesheet";
+import Back from '../icon/back.png'
+
+//css
+import '../css/add.css'
 
 const AddNewContact = ({tittle, TypeOfPage}) => {
 

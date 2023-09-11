@@ -1,3 +1,10 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries and css
 import React from "react";
 import './ComponentCss/Icon.css'
 

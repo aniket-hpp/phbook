@@ -1,6 +1,17 @@
-import React, { useState } from "react";
-import Wrapper from "./Wrapper";
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
+import React from "react";
+
+//components
+import Wrapper from "./Wrapper.js";
 import Icon from '../Components/Icon.js'
+
+//assests
 import Check from '../icon/check.png'
 import Whatsapp from '../icon/wp.png'
 import UnCheck from '../icon/checkbox.png'
@@ -23,7 +34,9 @@ const Radio = ({wp, setWp}) => {
                     width={"30px"}  
                     OnClick={() => {}}
                 />
+
                 <span style={{cursor: "default"}}>:</span>
+
                 <div style={{
                     filter: "invert(57%) sepia(17%) saturate(1714%) hue-rotate(183deg) brightness(97%) contrast(91%)"
                 }}>
@@ -34,6 +47,7 @@ const Radio = ({wp, setWp}) => {
                         OnClick={setWp}
                     />
                 </div>
+                
                 <span onClick={setWp} style={{cursor: "pointer"}}>{(wp)?"Yes":"No"}</span>
             </Wrapper>
         </div>

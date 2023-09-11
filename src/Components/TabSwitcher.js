@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import Button from "./Button.js";
 
 const TabSwitcher = ({heading, tab1, tab2, OnTab1Click, OnTab2Click, tabSelcted}) => {
     return (

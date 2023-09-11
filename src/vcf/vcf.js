@@ -1,5 +1,13 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import { parseString } from "./vcardparser"
 
+//Model
 export const vcfModel = {
     begin: 'VCARD',
     version: '',
@@ -11,6 +19,7 @@ export const vcfModel = {
     end: 'VCARD'
 }
 
+//actual Parser
 export const vcfPraser = async (str) => {
     let result
 

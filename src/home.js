@@ -1,17 +1,31 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//liabries
 import React, { useState } from "react";
-import Navbar from "./Components/Navbar.js";
-import './css/home.css'
-import CustomButton from './Components/CustomButton.js'
-import { useNavigate } from "react-router-dom";
 import { auth } from "./firebase/firebase.js";
-import Simple from './images/simple.gif'
+import { useNavigate } from "react-router-dom";
 import Stylesheet from "reactjs-stylesheet";
 
-const Home = () => {
+//components
+import Navbar from "./Components/Navbar.js";
+import CustomButton from './Components/CustomButton.js'
 
+//assests
+import Simple from './images/simple.gif'
+
+//css
+import './css/home.css'
+
+const Home = () => {
+    //useState variables
     const navigate = useNavigate()
     const [isHovering, setHovering] = useState(false)
 
+    //function to handle continue button
     const handleContinue = async () => {
         console.log(window.innerWidth)
             if(auth.currentUser){
@@ -23,6 +37,7 @@ const Home = () => {
             }
     }
 
+    //style
     const HomeStyle = Stylesheet.create({
         Card:{
             transition: '1s',
@@ -72,7 +87,7 @@ const Home = () => {
             <div
                 onMouseEnter={() => setHovering(true)}
                 onMouseLeave={() => setHovering(false)}
-             style={HomeStyle.Card}>
+                style={HomeStyle.Card}>
                     <p style={HomeStyle.topA}>A</p>
                     <img style={HomeStyle.midGif} 
                         src={Simple}

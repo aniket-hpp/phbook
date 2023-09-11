@@ -1,3 +1,10 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//function to filter userDatas based on passed key and value
 const Filter = (Data, key, value) => {
     return Data.filter(function(object){
         switch(key){

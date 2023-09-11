@@ -1,4 +1,11 @@
-function compareName(a, b) {
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//function to set Sorting way [names]
+function compareName(a, b){
     const name1 = a.name.toUpperCase();
     const name2 = b.name.toUpperCase();
 
@@ -12,6 +19,7 @@ function compareName(a, b) {
     return comparison;
 }
 
+//function to Sort userData based on names
 const Sort = (Data) => {
     return Data.sort((a, b) => compareName(a, b))
 }

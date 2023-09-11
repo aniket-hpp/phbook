@@ -1,20 +1,35 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import React, { useEffect, useState } from "react";
 import { auth } from '../firebase/firebase.js'
-import Navbar from "../Components/Navbar.js";
+import { useNavigate } from "react-router-dom";
+import Stylesheet from "reactjs-stylesheet";
+
+//data models and its functions
 import Client from "../Data/Client.js";
-import ClientModel from "../Model/communicationModel.js";
 import Filter from "../Data/Filter.js";
+import ClientModel from "../Model/communicationModel.js";
+
+//components
+import Navbar from "../Components/Navbar.js";
 import AddNewContact from "./add.js";
 import Wrapper from "../Components/Wrapper.js";
 import Icon from "../Components/Icon.js"
-import DeleteIcon from '../icon/delete.png'
-import { useNavigate } from "react-router-dom";
-import Back from '../icon/back.png'
 import Loading from "../Components/Loading.js";
 import Dialog from "../Components/Dialog.js";
-import Stylesheet from "reactjs-stylesheet";
+import TextButton from "../Components/TextButton.js";
+
+//assets
+import DeleteIcon from '../icon/delete.png'
+import Back from '../icon/back.png'
 
 const Profile = () => {
+    //variables & useState variables
     let Model = ClientModel
     const [loading, setLoading] = useState(true)
     const [Data, setData] = useState([])
@@ -22,6 +37,7 @@ const Profile = () => {
     const [dialog, setDialog] = useState(false)
     const navigate = useNavigate()
 
+    //function to delete a contact
     const Delete = async () => {
         setDialog(false)
 
@@ -42,6 +58,7 @@ const Profile = () => {
 
     }
 
+    //function to fetch updated contactList [refresh]
     const Update = async () => {
         Model.type = 'getData'
         Model.uid = auth.currentUser.email
@@ -66,6 +83,7 @@ const Profile = () => {
         isUser()
     }, [navigate, Data, User])
 
+    //style
     const ProfileStyle = Stylesheet.create({
         maincontainer:{
             display: (Data.length !== 0 && User[0])?'flex':'none',
@@ -117,7 +135,6 @@ const Profile = () => {
 
                     <div style={ProfileStyle.warning}>**Do not share your uid with anyone</div>  
 
-
                     <Wrapper width={(window.innerWidth < 450)?`${window.innerWidth - 120}px`:'90%'} height={"fit-content"} backgroundColor={"white"}>
                         <span style={{fontSize: (window.innerWidth < 450)?'small':'medium'}}>{'uid: '}</span>
                         <p style={{margin: "auto auto auto 0", fontSize: (window.innerWidth < 450)?'small':'medium'}}>{`${(auth.currentUser)?(auth.currentUser.uid):''}`}</p>
@@ -155,6 +172,9 @@ const Profile = () => {
                             }
                         )
                     }
+
+                    <TextButton text={'Delete my Account'} onClick={() => {}}/>
+
                 </Wrapper>  
             </div>
         </div> 

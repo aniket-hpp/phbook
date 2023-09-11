@@ -1,20 +1,33 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebase.js";
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
-import '../css/signup.css'
-import './signin.js'
+import CheckEmail from "../Data/CheckEmail.js";
+
+//components
 import Navbar from "../Components/Navbar.js";
-import Button from "../Components/Button";
-import Input from "../Components/Input";
+import Button from "../Components/Button.js";
+import Input from "../Components/Input.js";
 import SignIn from "./signin.js";
 import Icon from "../Components/Icon.js";
-import back from "../icon/back.png"
-import resend from "../icon/resend.png"
-import CheckEmail from "../Data/CheckEmail.js";
 import Dialog from '../Components/Dialog.js'
 
+//assets
+import resend from "../icon/resend.png"
+import back from "../icon/back.png"
+
+//css
+import '../css/signup.css'
+
 const SignUp = () => {
+    //useState variables
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [signupButton, setSignup] = useState(false)
@@ -22,6 +35,7 @@ const SignUp = () => {
     const [msg, setMsg] = useState()
     const navigate = useNavigate()
 
+    //funtion to enable Email & SignIn button
     const enableButton = () => {
         if(email !== '' && password !== ''){
             setSignup(true)
@@ -31,60 +45,64 @@ const SignUp = () => {
         setSignup(false)
     }
 
+    //funtion to setEmail
     const Email = (result) => {
         setEmail(result)
         enableButton()
     }
 
+    //funtction to setPassword
     const Password = (result) => {
         setPassword(result)
         enableButton()
     }
 
+    //funtion to handle SignUp button
     const signupClicked = async () => {
+        if(email !== '' && password !== ''){
+            if(!CheckEmail(email)){
+                setMsg("Invalid Email!")
+                showDialog(true)
+                return
+            }
 
-    if(email !== '' && password !== ''){
-        if(!CheckEmail(email)){
-            setMsg("Invalid Email!")
-            showDialog(true)
-            return
-        }
-
-        if(password.length <= 7){
-            setMsg("Password is too short!")
-            showDialog(true)
-            return
-        }
-
-        try{
-            await createUserWithEmailAndPassword(auth, email, password)
-            setMsg('User created sucessfully')
-            showDialog(true)
+            if(password.length <= 7){
+                setMsg("Password is too short!")
+                showDialog(true)
+                return
+            }
 
             try{
-                await sendEmailVerification(auth.currentUser)
-                alert('Verification Email Sent!')
-                navigate('/signin')
+                await createUserWithEmailAndPassword(auth, email, password)
+                setMsg('User created sucessfully')
+                showDialog(true)
+
+                try{
+                    await sendEmailVerification(auth.currentUser)
+                    alert('Verification Email Sent!')
+                    navigate('/signin')
+                }catch(error){
+                    setMsg(`${error}`)
+                    showDialog(true)
+                }
             }catch(error){
                 setMsg(`${error}`)
                 showDialog(true)
             }
-        }catch(error){
-            setMsg(`${error}`)
+
+
+        } else {
+            setMsg('Please fillup Email and Password')
             showDialog(true)
         }
-
-
-    } else {
-        setMsg('Please fillup Email and Password')
-        showDialog(true)
-    }
     }
 
+    //funtion to handle SignUp button
     const signinCLicked = () => {
         navigate('/signin')
     }
 
+    //function to handle Back button
     const backButton = () => {
         navigate(-1)
     }
@@ -112,7 +130,9 @@ const SignUp = () => {
     return (
         <>
             <Navbar/>
+
             <Dialog Show={dialog} Message={msg} Ok={() => showDialog(false)} button1={'OK'}/>
+            
             <div className="signup-container">
                 <div className="signup-items">
                     <div className="top-row">

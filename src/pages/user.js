@@ -1,33 +1,46 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import React, { useEffect, useState } from "react";
-import '../css/user.css'
-import Navbar from '../Components/Navbar.js'
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebase.js";
-import Sort from "../Data/Sort";
-import ContactPannel from "../Components/ContactPannel";
-import ContactCard from "../Components/ContactCard";
-import Seacrh from "../Components/Search";
-import TabSwitcher from "../Components/TabSwitcher";
-import Toolbar from "../Components/Toolbar";
-import Wrapper from "../Components/Wrapper";
-import Loading from "../Components/Loading";
-import Icon from "../Components/Icon.js"
-import Category from "../Data/Category";
+import { sendEmailVerification } from "firebase/auth";
 import Stylesheet from "reactjs-stylesheet";
 
-//backend libaries
-import ClientModel from "../Model/communicationModel";
-import Client from "../Data/Client.js";
-import Filter from '../Data/Filter.js'
-import { sendEmailVerification } from "firebase/auth";
+//components
+import Navbar from '../Components/Navbar.js'
+import ContactPannel from "../Components/ContactPannel.js";
+import ContactCard from "../Components/ContactCard.js";
+import Seacrh from "../Components/Search.js";
+import TabSwitcher from "../Components/TabSwitcher.js";
+import Toolbar from "../Components/Toolbar.js";
+import Wrapper from "../Components/Wrapper.js";
+import Loading from "../Components/Loading.js";
+import Icon from "../Components/Icon.js"
 import Dialog from "../Components/Dialog";
 
+//data models and its functions
+import Client from "../Data/Client.js";
+import ClientModel from "../Model/communicationModel";
+import Category from "../Data/Category.js";
+import Filter from '../Data/Filter.js'
+import Sort from "../Data/Sort.js";
+
+//css
+import '../css/user.css'
+
+//global objects
 var clientModel = ClientModel
 const client = Client
 
 const User = () => {
     const navigate = useNavigate()
 
+    //useState variables
     const [Data, setData] = useState([])
 
     const [search, setSearch] = useState('')
@@ -42,36 +55,7 @@ const User = () => {
     const [dialog, setDialog] = useState(false)
     const [button1, setButton1] = useState()
 
-    const UserStyle = Stylesheet.create({
-        usercontainer: {
-            overflowY: loading?'hidden':'auto'
-        },
-        search: {
-            display: "flex",
-            flexDirection: "column",  
-            gap: "25px"
-        },
-        AllPanel: {
-            display: (tab === 'tab1')?'block':"none"
-        },
-        SortedPanel: {
-            display: (tab === 'tab2')?'flex':"none",
-            flexDirection: "column",
-            gap: "10px"
-        },
-        SortedSubBlock: {
-            width: '100%', 
-            display: 'flex', 
-            flexDirection:'row', 
-            justifyContent: 'center', 
-            alignItems: 'center'
-        },
-        sortedTab:{
-            margin: "0", 
-            cursor: 'default'
-        }
-    })
-
+    //function to handel search button
     const handelSearch = async () => {
         if(search !== ''){
             setSearchResult(Filter(Data, filter, search))
@@ -81,6 +65,7 @@ const User = () => {
         }
     }
 
+    //hook1
     useEffect(() => {
         if(searchResult.length !== 0){
             setShowSearchResult(true)
@@ -91,6 +76,7 @@ const User = () => {
         }
     }, [searchResult])
 
+    //hook2
     useEffect(() => {
         const isUser = async () => {
             if(!auth.currentUser){
@@ -130,6 +116,7 @@ const User = () => {
             }
         }
 
+        //to handle redirection to home if no user is found
         auth.onAuthStateChanged((user) => {
             if(!user){
                 navigate('/')
@@ -139,13 +126,48 @@ const User = () => {
         isUser()
     }, [navigate, reload])
 
+    //style
+    const UserStyle = Stylesheet.create({
+        usercontainer: {
+            overflowY: loading?'hidden':'auto'
+        },
+        search: {
+            display: "flex",
+            flexDirection: "column",  
+            gap: "25px"
+        },
+        AllPanel: {
+            display: (tab === 'tab1')?'block':"none"
+        },
+        SortedPanel: {
+            display: (tab === 'tab2')?'flex':"none",
+            flexDirection: "column",
+            gap: "10px"
+        },
+        SortedSubBlock: {
+            width: '100%', 
+            display: 'flex', 
+            flexDirection:'row', 
+            justifyContent: 'center', 
+            alignItems: 'center'
+        },
+        sortedTab:{
+            margin: "0", 
+            cursor: 'default'
+        }
+    })
+
     return (
         <div>
             <Navbar TypeOfPage={'user'}/>
+
             <Loading loading={loading}/>
+
             <Dialog Message={msg} Show={dialog} button1={button1} Ok={() => {setDialog(false)}}/>
+
             <div className="maincontainer">
                 <div style={UserStyle.usercontainer} className="usercontainer"> 
+                    {/* Search Bar Block */}
                     <div style={UserStyle.search}>
                         <Seacrh 
                             setSearch={setSearch} 
@@ -162,6 +184,8 @@ const User = () => {
                                 <ContactCard data={Data[0]}/>
                             </Wrapper>
                         </div>
+                        
+                        {/* TOOLBAR BLOCK */}
 
                         <Toolbar 
                             addClickd={() => navigate('/add')}
@@ -171,6 +195,7 @@ const User = () => {
                     </div>
 
                     <div className="contacts">
+                        {/* TAB SWITCHING BLOCK */}
                         <TabSwitcher 
                             heading={"Contacts"}
                             tab1={'All'} 
@@ -198,6 +223,7 @@ const User = () => {
                                     <Icon display={true} icon={Category[0].image} width={"30px"}/>
                                     <p style={UserStyle.sortedTab}>{Category[0].name}</p> 
                                 </div>
+
                                 <ContactPannel setReload={setReload} List={Filter(Sort(Data), 'cat', 'fr')}/>
                             </Wrapper>
 
@@ -211,6 +237,7 @@ const User = () => {
                                     <Icon display={true} icon={Category[1].image} width={"30px"}/>
                                     <p style={UserStyle.sortedTab}>{Category[1].name}</p> 
                                 </div>
+
                                 <ContactPannel setReload={setReload} List={Filter(Sort(Data), 'cat', 'fa')}/>
                             </Wrapper>
 
@@ -225,6 +252,7 @@ const User = () => {
                                     <Icon display={true} icon={Category[2].image} width={"30px"}/>
                                     <p style={UserStyle.sortedTab}>{Category[2].name}</p> 
                                 </div>
+
                                 <ContactPannel setReload={setReload} List={Filter(Sort(Data), 'cat', 'of')}/>
                             </Wrapper>
 
@@ -239,6 +267,7 @@ const User = () => {
                                     <Icon display={true} icon={Category[3].image} width={"30px"}/>
                                     <p style={UserStyle.sortedTab}>{Category[3].name}</p> 
                                 </div>
+
                                 <ContactPannel setReload={setReload} List={Filter(Sort(Data), 'cat', 'ot')}/>
                             </Wrapper>
                         </div>

@@ -1,6 +1,17 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import React from "react";
-import LoadingIcon from '../icon/loading.gif'
+
+//components
 import Icon from '../Components/Icon.js'
+
+//assests
+import LoadingIcon from '../icon/loading.gif'
 
 const Loading = ({loading}) => {
     return (

@@ -1,5 +1,16 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import React, { useState } from "react";
-import Button from "./Button";
+
+//component
+import Button from "./Button.js";
+
+//css
 import '../Components/ComponentCss/select.css'
 
 const Select = ({ItemList, selected, setSelected}) => {
@@ -14,6 +25,7 @@ const Select = ({ItemList, selected, setSelected}) => {
                 enable={true} 
                 Text={ItemList[selected].name}
             />
+            
             <div style={{display: display}}>
                     {
                         ItemList.map((Item, Index) => {

@@ -1,8 +1,16 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries and css
 import React, { useState } from "react";
 import './ComponentCss/button.css'
 
 const Button = ({Text, OnClick, enable, isSelected}) => {
 
+    //useState variable
     const [isHovering, setHovering] = useState(false)
 
     return (

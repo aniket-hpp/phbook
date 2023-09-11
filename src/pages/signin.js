@@ -1,17 +1,33 @@
+/*
+      Created By: Aniket Biswas
+      Github: https://github.com/thesmartaniket
+      LinkedIn: https://www.linkedin.com/in/thesmartaniket/
+*/
+
+//libaries
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { auth } from "../firebase/firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import '../css/signup.css'
-import Navbar from "../Components/Navbar.js";
-import Button from "../Components/Button";
-import Input from "../Components/Input";
-import Icon from "../Components/Icon.js";
-import back from "../icon/back.png"
+
+//data models and its functions
 import CheckEmail from "../Data/CheckEmail.js";
+
+//components
+import Navbar from "../Components/Navbar.js";
+import Button from "../Components/Button.js";
+import Input from "../Components/Input.js";
+import Icon from "../Components/Icon.js";
 import Dialog from "../Components/Dialog.js";
 
+//assests
+import back from "../icon/back.png"
+
+//css
+import '../css/signup.css'
+
 const SignIn = () => {
+    //useState variables
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [signinButton, setSignin] = useState(false)
@@ -20,6 +36,7 @@ const SignIn = () => {
     const [msg, setMsg] = useState()
     const navigate = useNavigate()
 
+    //funtion to enable Reset button
     const enableButton = () => {
         if(email !== '' && password !== ''){
             setSignin(true)
@@ -29,49 +46,53 @@ const SignIn = () => {
         setSignin(false)
     }
 
+    //function to setEmail
     const Email = (result) => {
         setEmail(result)
         enableButton()
     }
 
+    //function to setPassword
     const Password = (result) => {
         setPassword(result)
         enableButton()
     }
 
+    //function to handle SignIn button
     const signinClicked = async () => {
+        if(email !== '' && password !== ''){
+            if(!CheckEmail(email)){
+                setMsg("Invalid Email!")
+                setDialog(true)
+                return
+            }
 
-    if(email !== '' && password !== ''){
-        if(!CheckEmail(email)){
-            setMsg("Invalid Email!")
-            setDialog(true)
-            return
-        }
+            if(password.length <= 7){
+                setMsg("Password is too short!")
+                setDialog(true)
+                return
+            }
 
-        if(password.length <= 7){
-            setMsg("Password is too short!")
-            setDialog(true)
-            return
-        }
-
-        try{
-            await signInWithEmailAndPassword(auth, email, password)
-            navigate('/user')
-            console.log('User signed in sucessfully')
-        }catch(error){
-            setMsg(`${error}`)
+            try{
+                await signInWithEmailAndPassword(auth, email, password)
+                navigate('/user')
+                console.log('User signed in sucessfully')
+            }catch(error){
+                setMsg(`${error}`)
+                setDialog(true)
+            }
+        } else {
+            setMsg('Please fillup Email and Password')
             setDialog(true)
         }
-    } else {
-        setMsg('Please fillup Email and Password')
-        setDialog(true)
     }
-    }
 
+    //function to handle Reset Buttom
     const resetCLicked = () => {
         navigate('/reset')
     }
 
+    //funtion to handle
     const backButton = () => {
         navigate(-1)
     }
