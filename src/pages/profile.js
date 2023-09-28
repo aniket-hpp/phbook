@@ -173,7 +173,7 @@ const Profile = () => {
                         )
                     }
 
-                    <TextButton text={'Delete my Account'} onClick={() => {}}/>
+                  {/*<TextButton text={'Delete my Account'} onClick={() => {}}/>*/}
 
                 </Wrapper>  
             </div>
